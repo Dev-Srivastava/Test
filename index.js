@@ -1,10 +1,13 @@
-const express = require("express");
-const user = require("./data.json")
-const app = express();
-const port = 8000
+const express=require('express');
+const app=express();
+const cors=require('cors');
+const port=3001;
+app.use(cors());
+app.get('/api/data',(req,res)=>{
+    const data=require('./data.json');
+    res.json(data);
+});
 
-app.get("api/users", (req,res)=>{
-    return res.json(user);
-})
-
-app.listen(port, ()=> console.log("Hello"))
+app.listen(port,()=>{
+    console.log('Server running');
+});
